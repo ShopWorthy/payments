@@ -1,6 +1,6 @@
 # payments
 
-**Payment microservice** for ShopWorthy — Java 17 + Spring Boot, H2 in-memory database. Handles charge, refund, webhooks, and exposes H2 console and Actuator (intentionally for training).
+**Payment microservice** for ShopWorthy — Java 17 + Spring Boot, H2 in-memory database. Handles charge, refund, webhooks, and exposes H2 console and Actuator.
 
 Part of the [ShopWorthy](https://github.com/ShopWorthy) organization.
 

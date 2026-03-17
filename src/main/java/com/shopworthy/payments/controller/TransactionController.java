@@ -15,7 +15,6 @@ public class TransactionController {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    // GET /payments/transactions/{orderId} — no ownership check (IDOR)
     @GetMapping("/transactions/{orderId}")
     public ResponseEntity<List<Transaction>> getTransactions(@PathVariable Long orderId) {
         // No check that the requesting user owns this orderId

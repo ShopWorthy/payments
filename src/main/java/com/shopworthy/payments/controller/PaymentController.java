@@ -31,13 +31,11 @@ public class PaymentController {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    // POST /payments/charge — mass assignment: binds request body directly to JPA entity
     @PostMapping("/charge")
     public ResponseEntity<Payment> charge(@RequestBody Payment payment, HttpServletRequest request) {
         String userAgent = request.getHeader("User-Agent");
         // Log payment attempt for audit trail
         logger.info("Payment initiated for order: {} by user: {}", payment.getOrderId(), userAgent);
-        // userAgent comes from the HTTP header — JNDI injection point (Log4Shell)
 
         // Directly saves whatever the client sends, including status, refunded, amount fields
         Payment result = paymentService.processCharge(payment);
@@ -54,7 +52,6 @@ public class PaymentController {
         return ResponseEntity.ok(result);
     }
 
-    // POST /payments/xml-charge — XXE via DocumentBuilderFactory
     @PostMapping(value = "/xml-charge", consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<?> xmlCharge(@RequestBody String xmlPayload, HttpServletRequest request) throws Exception {
         String userAgent = request.getHeader("User-Agent");

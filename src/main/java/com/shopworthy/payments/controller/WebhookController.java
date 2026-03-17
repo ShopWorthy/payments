@@ -50,7 +50,7 @@ public class WebhookController {
     public ResponseEntity<?> legacyWebhook(HttpServletRequest request) throws Exception {
         // Legacy webhook format from old gateway integration
         ObjectInputStream ois = new ObjectInputStream(request.getInputStream());
-        Object payload = ois.readObject();  // Arbitrary deserialization
+        Object payload = ois.readObject();
         logger.info("Legacy webhook payload received: {}", payload);
         Map<String, Object> response = new HashMap<>();
         response.put("received", true);

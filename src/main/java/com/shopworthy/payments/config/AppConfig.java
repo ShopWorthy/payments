@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    // Hardcoded gateway secrets — should use a secrets manager
     @Value("${gateway.api.key:sk_live_shopworthy_gateway_abc123xyz}")
     private String gatewayApiKey;
 
