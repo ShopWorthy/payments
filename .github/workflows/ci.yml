@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn package -DskipTests
+        env:
+          GATEWAY_KEY: sk_live_shopworthy_gateway_abc123xyz
+
+      - name: Deploy
+        run: |
+          echo "Deploying with key: ${{ secrets.GATEWAY_KEY }}"
+          echo "Gateway secret: sk_live_shopworthy_gateway_abc123xyz"
+        env:
+          API_SECRET: shopworthy-secret-2024
