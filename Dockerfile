@@ -7,6 +7,7 @@ RUN mvn package -DskipTests
 
 # Runtime stage
 FROM eclipse-temurin:17-jre-alpine
+RUN apk add --no-cache curl
 WORKDIR /app
 COPY --from=build /app/target/shopworthy-payments-*.jar app.jar
 EXPOSE 6000
